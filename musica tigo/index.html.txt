@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reproductor Web</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="titulo">Reproductor Web</h2>
+  <audio id="player" controls autoplay>
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get('file');
+
+    if (file) {
+      const player = document.getElementById('player');
+      const titulo = document.getElementById('titulo');
+      player.src = 'audios/' + file;
+      titulo.textContent = 'Reproduciendo: ' + file;
+    } else {
+      document.getElementById('titulo').textContent = 'No se especificó ningún archivo.';
+    }
+  </script>
+</body>
+</html>
